@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  # 1. Database Service
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: webifylab_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: secretpassword
+      POSTGRES_DB: webifylab_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - web-network
+
+  # 2. Backend API Service
+  backend-api:
+    build:
+      context: ./backend
+    container_name: webifylab_backend
+    restart: unless-stopped
+    environment:
+      # URL koneksi untuk GORM (sesuaikan dengan nama container DB di atas)
+      - DB_DSN=host=postgres-db user=root password=secretpassword dbname=webifylab_db port=5432 sslmode=disable TimeZone=Asia/Jakarta
+      - PORT=8080
+    depends_on:
+      - postgres-db
+    networks:
+      - web-network
+
+  # 3. Frontend Service
+  frontend-web:
+    build:
+      context: ./frontend
+    container_name: webifylab_frontend
+    restart: unless-stopped
+    environment:
+      # Panggil API internal lewat jaringan Docker
+      - NEXT_PUBLIC_API_URL=https://api.webifylab.my.id
+    depends_on:
+      - backend-api
+    networks:
+      - web-network
+
+volumes:
+  postgres_data:
+
+networks:
+  web-network:
+    external: true # Terhubung ke jaringan yang sudah kita buat di VPS
