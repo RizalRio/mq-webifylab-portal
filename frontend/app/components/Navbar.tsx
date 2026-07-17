@@ -64,7 +64,7 @@ export default function Navbar() {
         {/* CTA & Admin Portal (Desktop) */}
         <div className="hidden md:flex items-center gap-5">
           <a
-            href={`${process.env.NEXT_PUBLIC_APP_URL}/admin/login`}
+            href={`/admin/login`}
             className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-wider transition-colors"
           >
             Portal Admin
