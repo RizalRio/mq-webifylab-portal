@@ -52,7 +52,7 @@ export default function InboxPage() {
       const token = Cookies.get("admin_token");
       // Menambahkan query params page dan search ke backend Golang
       const res = await fetch(
-        `http://localhost:8000/api/v1/admin/messages?page=${page}&limit=10&search=${search}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/messages?page=${page}&limit=10&search=${search}`,
         {
           method: "GET",
           headers: {
@@ -102,7 +102,7 @@ export default function InboxPage() {
       try {
         const token = Cookies.get("admin_token");
         const res = await fetch(
-          `http://localhost:8000/api/v1/admin/messages/${msg.id}/read`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/messages/${msg.id}/read`,
           {
             method: "PATCH", // atau PUT, sesuaikan dengan endpoint Golang milikmu
             headers: {
@@ -130,7 +130,7 @@ export default function InboxPage() {
     try {
       const token = Cookies.get("admin_token");
       const res = await fetch(
-        `http://localhost:8000/api/v1/admin/messages/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/messages/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

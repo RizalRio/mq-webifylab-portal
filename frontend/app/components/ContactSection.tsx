@@ -26,15 +26,18 @@ export default function ContactSection() {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch("http://localhost:8000/api/v1/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          sender_phone:
-            formData.sender_phone === "" ? null : formData.sender_phone,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/contact`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            sender_phone:
+              formData.sender_phone === "" ? null : formData.sender_phone,
+          }),
+        },
+      );
       const data = await res.json();
       if (data.status === "success") {
         setStatus("success");

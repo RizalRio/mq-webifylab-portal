@@ -64,7 +64,7 @@ export default function Navbar() {
         {/* CTA & Admin Portal (Desktop) */}
         <div className="hidden md:flex items-center gap-5">
           <a
-            href="http://localhost:3000/admin/login"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/admin/login`}
             className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-wider transition-colors"
           >
             Portal Admin
@@ -114,7 +114,7 @@ export default function Navbar() {
               Mulai Diskusi <ArrowUpRight className="w-4 h-4" />
             </a>
             <a
-              href="http://localhost:3000/admin/login"
+              href={`${process.env.NEXT_PUBLIC_APP_URL}/admin/login`}
               className="flex items-center justify-center text-xs font-bold px-4 py-4 bg-slate-950 border border-white/5 rounded-xl text-slate-400 text-center uppercase tracking-wider"
             >
               Masuk Portal Admin

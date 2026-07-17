@@ -71,7 +71,7 @@ export default function SaaSPage() {
       // agar browser selalu menganggap ini adalah request baru yang belum di-cache.
       const timestamp = new Date().getTime();
       const res = await fetch(
-        `http://localhost:8000/api/v1/saas?page=${page}&limit=8&search=${search}&_t=${timestamp}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/saas?page=${page}&limit=8&search=${search}&_t=${timestamp}`,
       );
 
       const jsonRes = await res.json();
@@ -134,7 +134,9 @@ export default function SaaSPage() {
     // Tarik gambar terbaru dari array
     if (prod.media_assets?.length > 0) {
       const latestMedia = prod.media_assets[prod.media_assets.length - 1];
-      setPreviewUrl(`http://localhost:8000${latestMedia.file_url}`);
+      setPreviewUrl(
+        `${process.env.NEXT_PUBLIC_API_URL}${latestMedia.file_url}`,
+      );
     } else {
       setPreviewUrl(null);
     }
@@ -159,8 +161,8 @@ export default function SaaSPage() {
 
     try {
       const url = editingId
-        ? `http://localhost:8000/api/v1/admin/saas/${editingId}`
-        : "http://localhost:8000/api/v1/admin/saas";
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/saas/${editingId}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/saas`;
 
       const method = editingId ? "PUT" : "POST";
 
@@ -187,7 +189,7 @@ export default function SaaSPage() {
           formData.append("file", file);
 
           const mediaRes = await fetch(
-            "http://localhost:8000/api/v1/admin/media",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/media`,
             {
               method: "POST",
               headers: { Authorization: `Bearer ${token}` },
@@ -220,10 +222,13 @@ export default function SaaSPage() {
 
     try {
       const token = Cookies.get("admin_token");
-      const res = await fetch(`http://localhost:8000/api/v1/admin/saas/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/saas/${id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       const jsonResponse = await res.json();
 
       if (res.ok && jsonResponse.status === "success") {
@@ -353,7 +358,7 @@ export default function SaaSPage() {
                 <div className="h-48 bg-slate-950 relative overflow-hidden flex items-center justify-center border-b border-slate-800">
                   {prod.media_assets?.length > 0 ? (
                     <img
-                      src={`http://localhost:8000${prod.media_assets[prod.media_assets.length - 1].file_url}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${prod.media_assets[prod.media_assets.length - 1].file_url}`}
                       alt={prod.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       // HAPUS BAGIAN ON-ERROR DI SINI

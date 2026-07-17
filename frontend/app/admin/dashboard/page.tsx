@@ -62,13 +62,13 @@ export default function DashboardPage() {
 
         const [portData, saasData, msgData] = await Promise.all([
           safeFetch(
-            `http://localhost:8000/api/v1/portfolios?page=1&limit=1&_t=${timestamp}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/portfolios?page=1&limit=1&_t=${timestamp}`,
           ),
           safeFetch(
-            `http://localhost:8000/api/v1/saas?page=1&limit=1&_t=${timestamp}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/saas?page=1&limit=1&_t=${timestamp}`,
           ),
           safeFetch(
-            `http://localhost:8000/api/v1/admin/messages?page=1&limit=5&_t=${timestamp}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/messages?page=1&limit=5&_t=${timestamp}`,
           ),
         ]);
 

@@ -45,7 +45,7 @@ export default function SaaSShowcase() {
       try {
         const timestamp = new Date().getTime();
         const res = await fetch(
-          `http://localhost:8000/api/v1/saas?page=1&limit=4&_t=${timestamp}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/saas?page=1&limit=4&_t=${timestamp}`,
         );
         const jsonRes = await res.json();
 

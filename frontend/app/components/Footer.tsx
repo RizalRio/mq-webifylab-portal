@@ -37,7 +37,7 @@ export default function Footer() {
             {/* Interactive Social Icons */}
             <div className="flex items-center gap-4 pt-4">
               <a
-                href="https://github.com"
+                href="https://github.com/RizalRio"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-slate-900/50 border border-white/5 rounded-2xl text-slate-400 hover:text-white hover:bg-slate-800 hover:border-slate-700 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 group"
@@ -45,7 +45,7 @@ export default function Footer() {
                 <FaGithub className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/rizal-rio-andrian-b32929207"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-slate-900/50 border border-white/5 rounded-2xl text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 hover:border-blue-500/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-300 group"
@@ -53,7 +53,7 @@ export default function Footer() {
                 <FaLinkedin className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/rzlrndrn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-slate-900/50 border border-white/5 rounded-2xl text-slate-400 hover:text-pink-400 hover:bg-pink-500/10 hover:border-pink-500/30 hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] transition-all duration-300 group"
@@ -119,7 +119,7 @@ export default function Footer() {
                     Telepon / WhatsApp
                   </span>
                   <a
-                    href="https://wa.me/6281234567890"
+                    href="https://wa.me/6289654404563"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-slate-300 hover:text-white transition-colors"

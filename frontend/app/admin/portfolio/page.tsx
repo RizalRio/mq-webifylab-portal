@@ -72,7 +72,7 @@ export default function PortfolioPage() {
     setIsLoading(true);
     try {
       const resPort = await fetch(
-        `http://localhost:8000/api/v1/portfolios?page=${page}&limit=8&search=${search}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/portfolios?page=${page}&limit=8&search=${search}`,
       );
       const jsonPort = await resPort.json();
 
@@ -82,7 +82,9 @@ export default function PortfolioPage() {
         setTotalPages(jsonPort.data?.total_page || 1);
       }
 
-      const resTech = await fetch("http://localhost:8000/api/v1/technologies");
+      const resTech = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/technologies`,
+      );
       const jsonTech = await resTech.json();
       if (resTech.ok && jsonTech.status === "success") {
         setAvailableTechs(jsonTech.data || []);
@@ -131,7 +133,9 @@ export default function PortfolioPage() {
     // PERBAIKAN: Selalu ambil gambar versi terbaru (terakhir di-upload)
     if (port.media_assets?.length > 0) {
       const latestMedia = port.media_assets[port.media_assets.length - 1];
-      setPreviewUrl(`http://localhost:8000${latestMedia.file_url}`);
+      setPreviewUrl(
+        `${process.env.NEXT_PUBLIC_API_URL}${latestMedia.file_url}`,
+      );
     } else {
       setPreviewUrl(null);
     }
@@ -161,8 +165,8 @@ export default function PortfolioPage() {
     try {
       // Penentuan Metode HTTP dan Endpoint
       const url = editingId
-        ? `http://localhost:8000/api/v1/admin/portfolios/${editingId}`
-        : "http://localhost:8000/api/v1/admin/portfolios";
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/portfolios/${editingId}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/portfolios`;
 
       const method = editingId ? "PUT" : "POST";
 
@@ -190,7 +194,7 @@ export default function PortfolioPage() {
           formData.append("file", file);
 
           const mediaRes = await fetch(
-            "http://localhost:8000/api/v1/admin/media",
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/media`,
             {
               method: "POST",
               headers: { Authorization: `Bearer ${token}` },
@@ -235,7 +239,7 @@ export default function PortfolioPage() {
     try {
       const token = Cookies.get("admin_token");
       const res = await fetch(
-        `http://localhost:8000/api/v1/admin/portfolios/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/portfolios/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -358,7 +362,7 @@ export default function PortfolioPage() {
                   {port.media_assets?.length > 0 ? (
                     <img
                       // PERBAIKAN: Render gambar terbaru
-                      src={`http://localhost:8000${port.media_assets[port.media_assets.length - 1].file_url}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${port.media_assets[port.media_assets.length - 1].file_url}`}
                       alt={port.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

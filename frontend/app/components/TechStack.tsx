@@ -13,7 +13,7 @@ export default function TechStack() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/technologies")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/technologies`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {

@@ -27,7 +27,9 @@ export default function TechnologiesPage() {
     setIsLoading(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:8000/api/v1/technologies");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/technologies`,
+      );
       const jsonResponse = await res.json();
 
       if (res.ok && jsonResponse.status === "success") {
@@ -66,7 +68,7 @@ export default function TechnologiesPage() {
 
     try {
       const res = await fetch(
-        "http://localhost:8000/api/v1/admin/technologies",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/technologies`,
         {
           method: "POST",
           headers: {
@@ -99,7 +101,7 @@ export default function TechnologiesPage() {
     try {
       const token = Cookies.get("admin_token");
       const res = await fetch(
-        `http://localhost:8000/api/v1/admin/technologies/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/technologies/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
