@@ -63,6 +63,8 @@ func main() {
 			"http://localhost:3000", // Default port untuk Next.js / React
 			"http://localhost:8080", // Default port untuk Vue / Flutter Web
 			"http://localhost:5173", // Default port untuk Vite
+			"https://webifylab.my.id",
+			"https://www.webifylab.my.id",
 		},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization", "Accept"},
