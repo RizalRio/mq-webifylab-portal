@@ -91,7 +91,7 @@ export default function PortfolioShowcase() {
 
             const coverUrl =
               project.media_assets?.length > 0
-                ? `http://localhost:8000${project.media_assets[project.media_assets.length - 1].file_url}`
+                ? `${process.env.NEXT_PUBLIC_API_URL}${project.media_assets[project.media_assets.length - 1].file_url}`
                 : null;
 
             return (

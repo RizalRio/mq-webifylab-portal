@@ -100,7 +100,7 @@ export default function SaaSShowcase() {
 
             const coverUrl =
               product.media_assets?.length > 0
-                ? `http://localhost:8000${product.media_assets[product.media_assets.length - 1].file_url}`
+                ? `${process.env.NEXT_PUBLIC_API_URL}${product.media_assets[product.media_assets.length - 1].file_url}`
                 : null;
 
             return (
